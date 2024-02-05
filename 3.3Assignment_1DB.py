@@ -74,6 +74,19 @@ try:
 
     cursor.execute(sql_insert_marks)
 
+    sql_query = """SELECT STUDENT.FORENAME, AVG(MARKS.MARK) AS AVERAGE_MARK
+                   FROM STUDENT
+                   INNER JOIN MARKS ON STUDENT.STUDENT_NO = MARKS.STUDENT_NO
+                   GROUP BY STUDENT.FORENAME"""
+
+    cursor.execute(sql_query)
+
+    result = cursor.fetchall()
+
+    for row in result:
+        forename, average_mark = row
+        print(f"Forename: {forename}, Average Mark: {average_mark}")
+
     db.commit()
     print("Rows inserted successfully!")
 
@@ -83,3 +96,4 @@ except Exception as e:
 
 finally:
     db.close()
+
