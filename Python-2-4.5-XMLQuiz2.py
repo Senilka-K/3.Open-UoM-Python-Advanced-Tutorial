@@ -17,3 +17,6 @@ if selected_vehicle is not None:
 nissan_vehicles = root.findall(".//vehicle[make='Nissan']/registration_no")
 for reg_no_element in nissan_vehicles:
     print(reg_no_element.text)
+
+
+    
